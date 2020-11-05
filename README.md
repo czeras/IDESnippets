@@ -19,7 +19,7 @@ cd ~/Library/Developer/Xcode/UserData/CodeSnippets
 git init
 git add .
 git commit -m "Init code snippets"
-git remote add origin https://gitee.com/willed/CodeSnippets.git
+git remote add https://gitee.com/czeras/CodeSnippets.git
 git push -u origin master
 // 加上-u参数，下次直接输入git push即可
 
@@ -27,14 +27,14 @@ git push -u origin master
 
 ! /bin/bash
 cd ~/Library/Developer/Xcode/UserData/CodeSnippets
-git pull https://gitee.com/willed/CodeSnippets.git
+git pull https://gitee.com/czeras/CodeSnippets.git
 git add .
 git commit -m "New code snippets"
 git push
 echo "done"
 四、首次下载需要克隆Git，在CodeSnippets上级目录执行
 
-git clone http://gitee.com/willed/CodeSnippets.git
+git clone https://gitee.com/czeras/CodeSnippets.git
 
 
 
