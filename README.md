@@ -7,14 +7,14 @@ Xcode 代码块
 软件架构说明
 
 
-#### 安装教程
+## 安装教程
+##### 一、XCode代码块所在位置
 
-一、XCode代码块所在位置
-
+```
 ~/Library/Developer/Xcode/UserData/CodeSnippets
-
-二、打开终端，把CodeSnippets文件夹上传到码云
-
+```
+##### 二、打开终端，把CodeSnippets文件夹上传到码云
+```
 cd ~/Library/Developer/Xcode/UserData/CodeSnippets
 git init
 git add .
@@ -22,9 +22,10 @@ git commit -m "Init code snippets"
 git remote add https://gitee.com/czeras/CodeSnippets.git
 git push -u origin master
 // 加上-u参数，下次直接输入git push即可
+```
 
-三、新建UpdateCodeSnippets.sh（批处理），执行后自动同步修改到码云。
-
+##### 三、新建UpdateCodeSnippets.sh（批处理），执行后自动同步修改到码云。
+```
 ! /bin/bash
 cd ~/Library/Developer/Xcode/UserData/CodeSnippets
 git pull https://gitee.com/czeras/CodeSnippets.git
@@ -32,9 +33,12 @@ git add .
 git commit -m "New code snippets"
 git push
 echo "done"
-四、首次下载需要克隆Git，在CodeSnippets上级目录执行
-
+```
+##### 四、首次下载需要克隆Git，在CodeSnippets上级目录执行
+```
 git clone https://gitee.com/czeras/CodeSnippets.git
+```
+
 
 
 
