@@ -3,27 +3,25 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>weak</string>
+	<string>pri_layer</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>/**
- *  &lt;#私有变量作用描述#&gt;
- */
-@property (nonatomic,weak) &lt;#Class#&gt; *&lt;#object#&gt;;</string>
+	<string>    &lt;#view#&gt;.layer.borderWidth = 2;
+    &lt;#view#&gt;.layer.borderColor = [UIColor &lt;#color#&gt;].CGColor;</string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>A8D9F5D9-2D6F-41D6-8D9B-9D4CFF6F46A1</string>
+	<string>2A773229-6081-405B-928C-86DBB1D83EEE</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Objective-C</string>
 	<key>IDECodeSnippetSummary</key>
 	<string></string>
 	<key>IDECodeSnippetTitle</key>
-	<string>weak</string>
+	<string>pri_layer</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>
-	<integer>2</integer>
+	<integer>0</integer>
 </dict>
 </plist>

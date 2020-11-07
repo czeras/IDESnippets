@@ -3,27 +3,27 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>weak</string>
+	<string>code_path</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>/**
- *  &lt;#私有变量作用描述#&gt;
- */
-@property (nonatomic,weak) &lt;#Class#&gt; *&lt;#object#&gt;;</string>
+	<string>// XCode 自定义代码块的路径
+/*
+    ~/Library/Developer/Xcode/UserData/CodeSnippets
+*/</string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>A8D9F5D9-2D6F-41D6-8D9B-9D4CFF6F46A1</string>
+	<string>A1094776-E39C-4EBD-BE0B-BD69BA803927</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Objective-C</string>
 	<key>IDECodeSnippetSummary</key>
-	<string></string>
+	<string>xcode 代码块路径</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>weak</string>
+	<string>CodeSnippets path</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>
-	<integer>2</integer>
+	<integer>0</integer>
 </dict>
 </plist>

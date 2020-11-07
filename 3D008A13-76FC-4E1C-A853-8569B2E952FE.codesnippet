@@ -3,27 +3,31 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>weak</string>
+	<string></string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>/**
- *  &lt;#私有变量作用描述#&gt;
- */
-@property (nonatomic,weak) &lt;#Class#&gt; *&lt;#object#&gt;;</string>
+	<string>/*******************************************************
+ * 文件描述：&lt;#xxx业务的相关数据模型类#&gt;
+ * 说　　明：&lt;#文件包含了xxx业务所用到的相关数据模型#&gt;
+ * 作　　者：&lt;#姓名#&gt;
+ * 组　　织：
+ * 创建时间：2020-10-23
+ * 更新时间：2017-10-23
+ *******************************************************/</string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>A8D9F5D9-2D6F-41D6-8D9B-9D4CFF6F46A1</string>
+	<string>3D008A13-76FC-4E1C-A853-8569B2E952FE</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Objective-C</string>
 	<key>IDECodeSnippetSummary</key>
 	<string></string>
 	<key>IDECodeSnippetTitle</key>
-	<string>weak</string>
+	<string>pri_class_header</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>
-	<integer>2</integer>
+	<integer>0</integer>
 </dict>
 </plist>

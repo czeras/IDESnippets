@@ -9,7 +9,10 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>@property (nonatomic,weak) id&lt;&lt;#protocol#&gt;&gt; &lt;#delegate#&gt;;</string>
+	<string>/**
+ *  &lt;#私有变量作用描述#&gt;
+ */
+@property (nonatomic,weak) id&lt;&lt;#protocol#&gt;&gt; &lt;#delegate#&gt;;</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>987A7D72-E78E-4E9B-9A76-62841ED05BD8</string>
 	<key>IDECodeSnippetLanguage</key>

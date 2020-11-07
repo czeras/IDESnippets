@@ -3,27 +3,27 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>weak</string>
+	<string>pri_mode_bug_desc</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>/**
- *  &lt;#私有变量作用描述#&gt;
- */
-@property (nonatomic,weak) &lt;#Class#&gt; *&lt;#object#&gt;;</string>
+	<string>    // &lt;#日期2016-08-25#&gt; # Bug:&lt;#Bug编号#&gt;|&lt;#任务编号#&gt; # &lt;#编写人#&gt; - &lt;#代码内容 对相关代码进行注释#&gt;
+        // 代码区
+
+    // 结束： &lt;#日期2016-08-25#&gt; # Bug:&lt;#Bug编号#&gt;|&lt;#任务编号#&gt;</string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>A8D9F5D9-2D6F-41D6-8D9B-9D4CFF6F46A1</string>
+	<string>A7D70BDA-2352-4FFE-838C-6BB5B4AB08E5</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Objective-C</string>
 	<key>IDECodeSnippetSummary</key>
 	<string></string>
 	<key>IDECodeSnippetTitle</key>
-	<string>weak</string>
+	<string>pri_model_bug_desc</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>
-	<integer>2</integer>
+	<integer>0</integer>
 </dict>
 </plist>
