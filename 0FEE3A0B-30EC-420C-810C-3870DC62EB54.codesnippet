@@ -3,27 +3,29 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>delegate</string>
+	<string>pri_net_desc</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>/**
- *  &lt;#私有变量作用描述#&gt;
- */
-@property(nonatomic,weak)id&lt;&lt;#protocol#&gt;&gt; &lt;#delegate#&gt;;</string>
+	<string>    // 网络适配
+    &lt;key&gt;NSAppTransportSecurity&lt;/key&gt;
+        &lt;dict&gt;
+            &lt;key&gt;NSAllowsArbitraryLoads&lt;/key&gt;
+            &lt;true/&gt;
+    &lt;/dict&gt;</string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>987A7D72-E78E-4E9B-9A76-62841ED05BD8</string>
+	<string>0FEE3A0B-30EC-420C-810C-3870DC62EB54</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Objective-C</string>
 	<key>IDECodeSnippetSummary</key>
 	<string></string>
 	<key>IDECodeSnippetTitle</key>
-	<string>delegate</string>
+	<string>pri_net_desc</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>
-	<integer>2</integer>
+	<integer>0</integer>
 </dict>
 </plist>
