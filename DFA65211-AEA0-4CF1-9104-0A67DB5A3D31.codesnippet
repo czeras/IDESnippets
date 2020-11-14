@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string></string>
+	<string>pri_masonry_height</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
@@ -16,7 +16,7 @@
     [backgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.bottom.mas_offset(0);
     }];
-
+    
     backgroundView.layer.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0].CGColor;
     backgroundView.layer.shadowColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.1].CGColor;
     backgroundView.layer.shadowOffset = CGSizeMake(0,2);
@@ -36,11 +36,10 @@
     _tipsLabel.numberOfLines = 0;
     [backgroundView addSubview:_tipsLabel];
     [_tipsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(backgroundView.mas_left).offset(10);
-        make.top.equalTo(backgroundView.mas_top).offset(10);
+        make.left.equalTo(backgroundView.mas_left).offset(10);            make.top.equalTo(backgroundView.mas_top).offset(10);
         make.right.equalTo(backgroundView.mas_right).offset(-w750(152));
     }];
-
+    
     self.destinationLabel = [UILabel labWithTitle:@"湖北省武汉市光谷国际广场" boldFontSize:36 textColor:RGB16(0xFF9402)];
     self.destinationLabel.textAlignment = NSTextAlignmentLeft;
     self.destinationLabel.numberOfLines = 2;
@@ -52,14 +51,12 @@
     }];
     
     UIImageView *mapImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"locatedIcon"]];
-    [backgroundView addSubview:mapImageView];
-    self.mapImageView = mapImageView;
+    [backgroundView addSubview:mapImageView];       self.mapImageView = mapImageView;
     [mapImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.destinationLabel.mas_bottom).offset(10);
         make.width.height.mas_equalTo(w750(32));
         make.left.equalTo(_tipsLabel.mas_left);
     }];
-    
     self.addressLabel = [UILabel labWithTitle:@"" boldFontSize:24 textColor:RGB16(0x999999)];
     self.addressLabel.textAlignment = NSTextAlignmentLeft;
     self.addressLabel.numberOfLines = 2;
@@ -72,16 +69,16 @@
     }];
 }</string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>05847B99-EB45-45C7-A7F0-BD58434B9D21</string>
+	<string>DFA65211-AEA0-4CF1-9104-0A67DB5A3D31</string>
 	<key>IDECodeSnippetLanguage</key>
-	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<string>Xcode.SourceCodeLanguage.Objective-C-Plus-Plus</string>
 	<key>IDECodeSnippetSummary</key>
 	<string></string>
 	<key>IDECodeSnippetTitle</key>
-	<string>masonry_auto_height</string>
+	<string>pri_masonry_height</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>
-	<integer>2</integer>
+	<integer>0</integer>
 </dict>
 </plist>
