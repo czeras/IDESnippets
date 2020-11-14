@@ -9,7 +9,7 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>// &lt;#属性描述#&gt;
+	<string>// &lt;#变量描述#&gt;
 @property(nonatomic,copy)NSString *&lt;#string#&gt;;</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>3C144995-7C24-4694-82CA-3C05292057EE</string>
