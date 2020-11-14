@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>pri_for_in_nikou</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>NSArray *orderMudList = self.orderItem.jxcSiteInfoVoList;
+    
+    if (orderMudList.count&gt;1) {
+        // 车辆装车后每趟根据雇主需求前往以下泥口之一
+        GYOrderTipsItem *tipsItem = [[GYOrderTipsItem alloc] init];
+        [arrayM2 addObject:tipsItem];
+    }
+    
+    NSArray *tempMunArr = @[@"泥口一：",@"泥口二：",@"泥口三："];
+    for (int i = 0; i&lt;orderMudList.count; i++) {
+        // 网路请求数据源模型
+        GYMudMouthItem *detailItem = orderMudList[i];
+
+        // 循环添加数据
+        GYOrderAbsorptionItem *absItem = [[GYOrderAbsorptionItem alloc] init];
+        absItem.estimateMiles = detailItem.estimateMiles;
+        absItem.estimatePrice = detailItem.estimatePrice;
+        absItem.fixedPrice = detailItem.fixedPrice;
+        absItem.pricingMode = detailItem.pricingMode;
+        absItem.siteAddress = detailItem.siteAddress;
+        absItem.siteLng = detailItem.siteLng;
+        absItem.siteLat = detailItem.siteLat;
+        absItem.siteName = detailItem.siteName;
+        absItem.siteId = detailItem.siteId;
+        absItem.withOrWithoutSite = detailItem.withOrWithoutSite;
+        absItem.isMudMouth = detailItem.isMudMouth;
+        absItem.orderPrice = detailItem.orderPrice;
+        absItem.earthType = detailItem.earthType;
+        absItem.list_id = [detailItem.mudId intValue];
+        absItem.capacity = detailItem.capacity;
+        absItem.couponCount = detailItem.couponCount;
+        if (i == 0) {
+            absItem.isMun = YES;
+        } else {
+            absItem.isMun = NO;
+        }
+        absItem.mun_name = tempMunArr[i];
+        
+        [arrayM2 addObject:absItem];
+    }</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>35A0FA7E-4C07-46D4-81F1-BAE0A80CE1DB</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>遍历你扣数据</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>pri_for_in_nikou</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
