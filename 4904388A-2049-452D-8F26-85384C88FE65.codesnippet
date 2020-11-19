@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string></string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>- (void)setupUI {
+    
+    self.backgroundColor = UIColor.whiteColor;
+    self.layer.cornerRadius = 10;
+    self.layer.shadowColor = [UIColor colorWithRed:233/255.0 green:236/255.0 blue:241/255.0 alpha:0.8].CGColor;
+    self.layer.shadowOffset = CGSizeMake(0,2.5);
+    self.layer.shadowOpacity = 1;
+    self.layer.shadowRadius = 8.5;
+    
+    _iconImageView = [[UIImageView alloc] init];
+    _iconImageView.image = [UIImage imageNamed:@""];
+    [self addSubview:_iconImageView];
+    [_iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.mas_offset(w750(30));
+        make.width.height.mas_equalTo(w750(40));
+    }];
+    
+    _titleLabel = [UILabel labWithTitle:@"请前往施工地:" fontSize:28 textColor:GYCommonLightGrayTextColor];
+    _titleLabel.numberOfLines = 1;
+    [self addSubview:_titleLabel];
+    [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(_iconImageView.mas_right).mas_offset(w750(20));
+        make.centerY.mas_equalTo(_iconImageView);
+    }];
+    
+    _recordBtn = [UIButton buttonWithTarget:self action:@selector(toCard)];
+    [_recordBtn setTitle:@"已发电子消纳券 &gt;" forState:UIControlStateNormal];
+    [_recordBtn setTitleColor:GYCommonGrayTextColor forState:UIControlStateNormal];
+    _recordBtn.titleLabel.font = [UIFont pingFangFontOfSize:12 weight:GYFontWeightRegular];
+    _recordBtn.hidden = YES;
+    [self addSubview:_recordBtn];
+    [_recordBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.height.mas_equalTo(_titleLabel);
+        make.right.mas_offset(-w750(30));
+    }];
+    
+    _addressLabel = [UILabel labWithTitle:@"广州省深圳市南山区沙龙1路二段190号1栋" fontSize:28 textColor:GYCommonBlackColor];
+    _addressLabel.numberOfLines = 2;
+    [self addSubview:_addressLabel];
+    [_addressLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(_iconImageView);
+        make.top.mas_equalTo(_iconImageView.mas_bottom).mas_offset(w750(20));
+        make.right.mas_offset(-w750(120));
+    }];
+    
+    _mapBtn = [UIButton buttonWithTarget:self action:@selector(toMapGuide)];
+    [_mapBtn setImage:[UIImage imageNamed:@"mapIcon"] forState:UIControlStateNormal];
+    [self addSubview:_mapBtn];
+    [_mapBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(w750(80));
+        make.height.mas_equalTo(w750(80));
+        make.right.mas_offset(-w750(30));
+        make.top.mas_offset(w750(70));
+    }];
+    
+    _lineView=[[UIView alloc] init];
+    _lineView.backgroundColor=RGB16(0xEEEEEE);
+    [self addSubview:_lineView];
+    [_lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(w750(2));
+        make.top.mas_equalTo(_addressLabel.mas_bottom).offset(w750(20));
+        make.left.right.mas_offset(0);
+    }];
+    
+    _tipsLabel = [UILabel labWithTitle:@"到达施工地时，请及时展示二维码以打卡" fontSize:24 textColor:RGB16(0xFF9402)];
+    _tipsLabel.numberOfLines = 1;
+    [self addSubview:_tipsLabel];
+    [_tipsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(_lineView.mas_bottom).mas_offset(w750(20));
+        make.left.mas_equalTo(_addressLabel);
+    }];
+    
+    _workoutBtn = [UIButton buttonWithTarget:self action:@selector(workout)];
+    [_workoutBtn setImage:[UIImage imageNamed:@"workoutIcon"] forState:UIControlStateNormal];
+    [self addSubview:_workoutBtn];
+    [_workoutBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(_tipsLabel.mas_bottom).mas_offset(w750(30));
+        make.left.mas_equalTo(_tipsLabel.mas_left).mas_offset(w750(40));
+        make.width.mas_equalTo(w750(220));
+        make.height.mas_equalTo(w750(80));
+    }];
+    
+    _qrCoreBtn = [UIButton buttonWithTarget:self action:@selector(scan)];
+    [_qrCoreBtn setImage:[UIImage imageNamed:@"qrIcon"] forState:UIControlStateNormal];
+    [self addSubview:_qrCoreBtn];
+    [_qrCoreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(_tipsLabel.mas_bottom).mas_offset(w750(30));
+        make.right.mas_offset(-w750(70));
+        make.width.mas_equalTo(w750(220));
+        make.height.mas_equalTo(w750(80));
+        
+        make.bottom.equalTo(self.mas_bottom).offset(-w750(20));
+    }];    
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>4904388A-2049-452D-8F26-85384C88FE65</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>pri_masonry_height1</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>

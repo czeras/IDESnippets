@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string></string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>//确认到达
+- (void)didClickConfirmBtn:(GYTripsNumRecordedTableViewCell *)cell item:(GYMachineRouteListModel *)item
+{
+    // 点击倾倒完成
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@""
+                                                                   message:@"是否确认已将土方倾倒完成？"
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault
+                                                         handler:^(UIAlertAction * action) {
+        
+    }];
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) {
+        //响应事件
+        NSLog(@"action = %@", action);
+        [self sureDumpingComplete:item];
+    }];
+    [defaultAction setValue:RGB16(0xFF9402) forKey:@"titleTextColor"];
+    [cancelAction setValue:RGB16(0x333333) forKey:@"titleTextColor"];
+    [alert addAction:cancelAction];
+    [alert addAction:defaultAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+-(void)sureDumpingComplete:(GYMachineRouteListModel *)parItem{
+    __auto_type req=[[GYConfirmArriveReq alloc] init];
+    __auto_type hub=[GYHUDHelper showImg];
+    req.siteId=parItem.siteId;
+    req.machineCardNo=parItem.machineCarNo;
+    req.longitude=[NSString stringWithFormat:@"%lf",self.loc.location.coordinate.longitude];
+    req.latitude=[NSString stringWithFormat:@"%lf",self.loc.location.coordinate.latitude];
+    req.debugEnabled=YES;
+    [req start:^(id  _Nullable requestResult, NSError * _Nullable error) {
+        if (error) {
+            [hub onTips:@"好像出错了,请稍后再试"];
+            return ;
+        }
+        if (!gy_resultOK(requestResult)) {
+            [hub onTips:requestResult[@"message"]];
+            return ;
+        }
+        [hub hideAnimated:YES];
+        
+        [self counterSuccess];
+        
+        [self.tableView gy_pullToRefresh];
+        
+    }];
+}
+
+#pragma mark - lazy load
+
+- (GYSpeechSynthesizer *)synthesizer {
+    if (!_synthesizer) {
+        _synthesizer = [[GYSpeechSynthesizer alloc] init];
+    }
+    return _synthesizer;
+}
+
+- (void)counterSuccess {
+    NSString *content = @"倾倒成功,请您返回施工地继续装车跑趟.";
+    self.tipsView = [self noticeAlert:self.view withNoticeStr:content
+                             withFram:CGRectMake((self.view.width - w750(360))/2,
+                                                 self.view.centerY + 150,
+                                                 w750(360),
+                                                 w750(40))];
+    // 开始合成
+    @weakify(self);
+    [self.synthesizer startSynthesize:content finished:^{
+        @strongify(self);
+        [self.tipsView removeFromSuperview];
+    }];
+}
+
+- (UIView *)noticeAlert:(UIView*)view withNoticeStr:(NSString*)str withFram:(CGRect)myFrame {
+    
+    UIView *myView = [[UIView alloc]init];
+    myView.backgroundColor = [UIColor blackColor];
+    myView.alpha = 0.59;
+    [myView.layer setCornerRadius:10];
+    [view addSubview:myView];
+    
+    // 通过字符串计算宽高
+    CGFloat maxWidth = self.view.width - w750(100);
+    CGSize bgViewSize = [str textSizeWithSize:CGSizeMake(maxWidth, MAXFLOAT) font:[UIFont systemFontOfSize:14]];
+    
+    [myView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_offset(bgViewSize.width + w750(30));
+        make.height.mas_offset(bgViewSize.height + w750(30));
+        make.centerX.equalTo(self.view);
+        make.bottom.equalTo(self.view.mas_bottom).offset(w750(-100));
+    }];
+    
+    UILabel *noticeLabel = [[UILabel alloc] init];
+    noticeLabel.text = str;
+    noticeLabel.font = [UIFont systemFontOfSize:14];
+    noticeLabel.textColor = [UIColor whiteColor];
+    noticeLabel.textAlignment = NSTextAlignmentCenter;
+    [myView addSubview:noticeLabel];
+    noticeLabel.numberOfLines = 0;//表示label可以多行显示
+//    noticeLabel.lineBreakMode = NSLineBreakByClipping;
+    [noticeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(myView);
+        make.size.mas_offset(bgViewSize);
+    }];
+
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+//    [UIView setAnimationDuration:time];
+    [UIView setAnimationDelegate:self];
+//    myView.alpha = 0.0;
+    [UIView commitAnimations];
+    
+    return myView;
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>D59DEB88-653C-48CE-B3BB-7B1F1A6FF568</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>确认倾倒完成</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
