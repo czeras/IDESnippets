@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>pri_regiest_net</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>    [self.view endEditing:YES];
+    if(_phoneView.phoneTF.text.length==0)
+    {
+        [GYHUDHelper showInfoWithStatus:@"请输入手机号码"];
+        return;
+    }
+    if(_phoneView.phoneTF.text.isValidPhonenum==NO)
+    {
+        [GYHUDHelper showInfoWithStatus:@"请输入正确的手机号码"];
+        return;
+    }
+    if(_identifyView.codeTF.text.length==0)
+    {
+        [GYHUDHelper showInfoWithStatus:@"验证码不能为空"];
+        return;
+    }
+    if(_pwdView.pwdTF.text.length==0)
+    {
+        [GYHUDHelper showInfoWithStatus:@"密码不能为空"];
+        return;
+    }
+    if(_pwdView.pwdTF.text.isLegalPassword==NO)
+    {
+        [GYHUDHelper showInfoWithStatus:@"密码必须是6-20位的数字、字母或数字字母组合"];
+        return;
+    }
+    if(_checkBtn.selected==NO)
+    {
+        [GYHUDHelper showInfoWithStatus:@"请先同意用户协议"];
+        return;
+    }
+    
+    __auto_type hud=[GYHUDHelper showImg];
+    @weakify(self);
+    [[GYAccountHelper sharedInstance] registerWithPhone:_phoneView.phoneTF.text pwd:_pwdView.pwdTF.text code:_identifyView.codeTF.text completion:^(GYUser * _Nonnull user, NSError * _Nonnull error) {
+        @strongify(self);
+        if (error.code == 10042) {
+            [hud onTips:@"手机号已注册"];
+            return;
+        } else if (error.code == 10036){
+            [hud onTips:error.userInfo[@"NSLocalizedDescription"]];
+            return;
+        } else if(error){
+            [hud onTips:error.userInfo[@"NSLocalizedDescription"]];
+            return;
+        }
+        
+        [[AppDelegate sharedAppDelegate] resolveRootViewControler];
+        [[AppDelegate sharedAppDelegate].window bringSubviewToFront:hud];
+        [hud onSuccess:@"注册成功"];
+        [[NSUserDefaults standardUserDefaults] setObject:self.phoneView.phoneTF.text forKey:@"userAccount"];
+        [[NSUserDefaults standardUserDefaults] setObject:self.pwdView.pwdTF.text forKey:@"userPwd"];
+    }];</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>C36AF101-88E1-4F65-B1BE-1991FF72C301</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>pri_regiest_net</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>

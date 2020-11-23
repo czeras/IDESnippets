@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>pri_btn_gradientLayer</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>// 同意并注册
+    UIButton *sureRegiestBtn = [[UIButton alloc]init];
+    [sureRegiestBtn setTitle:@"同意并注册" forState:UIControlStateNormal];
+    sureRegiestBtn.titleLabel.font = [UIFont pingFangFontOfSize:w750(36) weight:GYFontWeightMedium];
+    [sureRegiestBtn setTitleColor:RGB16(0x333333) forState:UIControlStateNormal];
+    [self.view addSubview:sureRegiestBtn];
+    [sureRegiestBtn addTarget:self action:@selector(sureRegiestBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    [sureRegiestBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(bottomLine.mas_left);
+        make.right.equalTo(bottomLine.mas_right);
+        make.centerX.equalTo(self.view.mas_centerX);
+        make.top.equalTo(bottomLine.mas_bottom).offset(w750(80));
+        make.height.mas_equalTo(w750(50 * 2));
+    }];
+
+    [self.view layoutIfNeeded];
+
+    
+    CAGradientLayer *buttonGradient = [CAGradientLayer layer];
+    buttonGradient.frame = sureRegiestBtn.bounds;
+    buttonGradient.colors = [NSArray arrayWithObjects:(id)[RGB16(0xFFE25F) CGColor],
+                                                      (id)[RGB16(0xFFD246) CGColor],nil];
+    [buttonGradient setCornerRadius:w750(50)];
+    [buttonGradient setStartPoint:CGPointMake(1.0f, 0.5f)];
+    [buttonGradient setEndPoint:CGPointMake(0.0f, 0.5f)];
+    
+    buttonGradient.locations = @[@(0), @(1.0f)];
+    [sureRegiestBtn.layer insertSublayer:buttonGradient atIndex:0];</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>88EBA9FB-3915-421C-8698-C7CB0409D7B5</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>pri_btn_gradientLayer</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>

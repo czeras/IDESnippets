@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>pri_textField_placeholder</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>UITextField *contentField = [[UITextField alloc] init];
+        [self addSubview:_contentField];
+        [_contentField mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_descLable.mas_bottom).offset(w750(40));
+            make.height.mas_equalTo(w750(80));
+            make.left.equalTo(self.mas_left).offset(w750(40));
+            make.right.equalTo(self.mas_right).offset(-w750(40));
+        }];
+        _contentField.layer.borderWidth = 1;
+        _contentField.layer.borderColor = RGB16(0x666666).CGColor;
+        _contentField.layer.cornerRadius = 5;
+        
+        _contentField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"请输入登录密码" attributes:@{
+            NSForegroundColorAttributeName:RGB16(0x999999),
+            NSFontAttributeName:[UIFont systemFontOfSize:32]
+        }];</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>521D1C64-060E-43E8-A457-A221275A3597</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>pri_textField_placeholder</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>
