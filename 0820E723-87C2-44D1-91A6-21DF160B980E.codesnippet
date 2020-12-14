@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>pri_notes_desc</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>/// 注释 和 /** 注释 */  在调用时，Xcode可以显示注释信息，注意 "/**" 是两个"*", 一颗星注释时，不能显示提示。
+
+多行注释，提示时只能显示一行。
+在行尾注释 需要加"&lt;" 符号，否则不会显示， 如：///&lt; 注释 或 /**&lt; 注释 */</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>0820E723-87C2-44D1-91A6-21DF160B980E</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C-Plus-Plus</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>pri_notes_desc</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

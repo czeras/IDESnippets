@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>pri_tableview_pull_push</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>//
+//  GYDamagesController.m
+//  Tenant
+//
+//  Created by 王朝孟 on 2020/12/8.
+//  Copyright © 2020 wuhangongyou. All rights reserved.
+//
+
+#import "GYDamagesController.h"
+
+#import "UIScrollView+EmptyAble.h"
+#import "GYEmptyViewUtil.h"
+#import "GYErrorView.h"
+
+#import "GYDamagesReq.h"
+#import "GYProjectOrderDetailModel.h" // GYDamagesListModel 违约金 model
+
+#import "GYDamagesCell.h"
+
+@interface GYDamagesController ()&lt;UITableViewDelegate, UITableViewDataSource,UIScrollViewEmptyDataSource, UIScrollViewEmptyDelegate&gt;
+
+@property(nonatomic,strong)GYErrorView *errorView;
+/** table view*/
+@property (nonatomic, weak) UITableView *tableView;
+
+/** 请求 */
+@property (nonatomic, strong) GYDamagesReq *request;
+/** 页数*/
+@property (nonatomic, assign) NSInteger pageCount;
+
+/** 模型数组*/
+@property(nonatomic, strong) NSMutableArray&lt;GYDamagesListModel *&gt; *items;
+
+@property(nonatomic,strong)GYHUDHelper *hud;
+
+@property(nonatomic,assign)BOOL flag;
+
+@end
+
+@implementation GYDamagesController
+
+- (GYDamagesReq *)request{
+    if (!_request) {
+        _request = [[GYDamagesReq alloc]init];
+        _request.debugEnabled = YES;
+    }
+    return _request;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    [self.tableView gy_pullToRefresh];
+}
+
+#pragma mark - UI related
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    [self setupTableView];
+    
+    [self setupRefresh];
+}
+
+- (void)setupRefresh {
+    @weakify(self);
+    
+    __auto_type refreshHandler = ^(BOOL loadMore) {
+        @strongify(self);
+        [self cancelCurrentLoading];
+        
+        [self loadDataMore:loadMore succ:^(NSArray *items, BOOL hasMore) {
+            @strongify(self);
+            if (loadMore) {
+                [self.items addObjectsFromArray:items];
+            } else {
+                [self.items setArray:items];
+            }
+            [self.tableView gy_endRefresh:loadMore hasMore:hasMore hasError:NO];
+            [self.tableView reloadData];
+            self.tableView.emptyState = self.items.count &gt; 0 ? MyEmptyStateNone : MyEmptyStateEmptyList;
+        } fail:^(NSError *error) {
+            @strongify(self);
+            if (!self) { return; }
+            [GYHUDHelper showMessage:@"好像出错了，请稍后再试"];
+            [self.tableView gy_endRefresh:loadMore hasMore:NO hasError:YES];
+            self.tableView.emptyState = MyEmptyStateFailed;
+        }];
+    };
+    
+    [self.tableView gy_setPullToRefreshHandler:^{
+        @strongify(self);
+        if (self.tableView.gy_isFooterRefreshing) {
+            [self.tableView gy_loadMoreFinished];
+        }
+        refreshHandler(NO);
+    }];
+    
+    [self.tableView gy_setPullToLoadMoreHandler:^{
+        @strongify(self);
+        if (self.tableView.gy_isHeaderRefreshing) {
+            [self.tableView gy_refreshFinished];
+        }
+        refreshHandler(YES);
+    }];
+    
+    [self.tableView gy_pullToRefresh];
+}
+
+- (void)dealloc {
+    GYLogFunc;
+    [self cancelCurrentLoading];
+}
+
+- (void)setupTableView {
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+    [self.view addSubview:tableView];
+    self.tableView = tableView;
+    adjustContentInsetNever(tableView, self);
+    tableView.scrollIndicatorInsets = tableView.contentInset;
+    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    tableView.backgroundColor = self.view.backgroundColor;
+    tableView.tableFooterView = [UIView new];
+    tableView.estimatedRowHeight=w750(109*2);
+    tableView.dataSource = self;
+    tableView.delegate = self;
+    tableView.emptyDataSource = self;
+    tableView.emptyDelegate = self;
+    
+    [tableView registerClass:GYDamagesCell.class forCellReuseIdentifier:NSStringFromClass([GYDamagesCell class])];
+    
+    [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_offset(0);
+        make.top.equalTo(self.view).offset(GYNaviBarMaxY);
+    }];
+}
+
+#pragma mark - public
+-(void)loadDataMore:(BOOL)loadMore succ:(GYCommonArrayBlock)succ fail:(GYCommonFailBlock)fail{
+    
+    NSInteger pageNo = loadMore ? self.pageCount + 1 : 1;
+    
+    self.request.pageNo = pageNo;
+    self.request.pageSize = 10;
+    self.request.debugEnabled = YES;
+    [self.request start:^(id  _Nullable requestResult, NSError * _Nullable error) {
+        if (error) {
+            !fail ?: fail(error);
+            return;
+        }
+        if (!gy_resultOK(requestResult)) {
+            !fail ?: fail([NSError errorWithCode:gy_errorCode(requestResult) localizedMsg:requestResult[@"message"]]);
+            return;
+        }
+        
+        NSArray *items = [GYDamagesListModel mj_objectArrayWithKeyValuesArray:requestResult[@"data"][@"queryResult"]];
+        NSString *totalCount=requestResult[@"data"][@"pageCount"];
+        BOOL hasMore = pageNo &lt; totalCount.integerValue;
+        self.pageCount = pageNo;
+        !succ ?: succ(items, hasMore);
+    }];
+}
+
+- (void)cancelCurrentLoading {
+    [_request cancel];
+}
+
+#pragma mark - UIScrollViewEmptyDataSource
+
+- (UIView *)scrollView:(UIScrollView *)scrollView emptyViewForState:(MyEmptyState)state {
+    UIView *view = nil;
+    switch (state) {
+        case MyEmptyStateEmptyList: {
+            NSString *title = @"您暂时还没有违约金数据";
+            GYCommonEmptyView *view = [[GYCommonEmptyView alloc] init];
+            view.titleLabel.text = title;
+            view.imageView.image = [UIImage imageNamed:@"project_no_list"];
+            view.imageView.contentMode = UIViewContentModeScaleAspectFit;
+            view.imageSize = view.imageView.image.size;
+            view.titlePaddingTop = 15;
+        
+            return view;
+        }
+            break;
+        case MyEmptyStateFailed:
+            view = GYEmptyViewUtil.errorView;
+            break;
+        default:
+            break;
+    }
+    return view;
+}
+
+- (UIView *)scrollView:(UIScrollView *)scrollView emptyBackgroundViewForState:(MyEmptyState)state {
+    UIView *view = [[UIView alloc] init];
+    view.backgroundColor = [UIColor whiteColor];
+    return view;
+}
+
+#pragma mark - UIScrollViewEmptyDelegate
+
+- (BOOL)emptyViewShouldAllowTouch:(UIScrollView *)scrollView forState:(MyEmptyState)state {
+    return state == MyEmptyStateFailed;
+}
+
+- (BOOL)emptyViewShouldAllowScroll:(UIScrollView *)scrollView forState:(MyEmptyState)state {
+    return state != MyEmptyStateFailed;
+}
+
+- (void)scrollView:(UIScrollView *)scrollView didTap:(UIView *)view {
+    self.tableView.emptyState = MyEmptyStateLoading;
+    [self.tableView gy_pullToRefresh];
+}
+
+- (void)addErrorView{
+    if (self.errorView) {
+        return;
+    }
+    self.errorView = [[GYErrorView alloc]initWithFrame:self.view.bounds handel:^{
+//        [self getData];
+    }];
+    self.errorView.backgroundColor = UIColor.whiteColor;
+    [self.view addSubview:self.errorView];
+    
+}
+- (void)removeErrorView{
+    if (self.errorView) {
+        [self.errorView removeFromSuperview];
+        self.errorView = nil;
+    }
+}
+
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.items.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    @weakify(self);
+    
+    GYDamagesCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([GYDamagesCell class])];
+    if (!cell) {
+        cell = [[GYDamagesCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:NSStringFromClass([GYDamagesCell class])];
+    }
+    
+    
+    
+    return cell;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    return UITableViewAutomaticDimension;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//    GYNewProgramListModel *model = self.items[indexPath.row];
+//    NSLog(@"%ld ,-- %@",indexPath.row,model);
+//
+//    // 首页
+//    if (self.flagStyle == 2) {
+//        GYProjectAlreadyCallCarViewController *vc = [[GYProjectAlreadyCallCarViewController alloc]init];
+//        vc.projectId = model.p_id;
+//        [self.navigationController pushViewController:vc animated:YES];
+//    }else {
+//        GYDueProjectCarViewController *v = [[GYDueProjectCarViewController alloc] init];
+//        v.projectId = model.p_id;
+//        [self.navigationController pushViewController:v animated:YES];
+//    }
+}
+
+
+- (NSMutableArray&lt;GYDamagesListModel *&gt; *)items {
+    if (!_items) {
+        _items = [NSMutableArray array];
+    }
+    return _items;
+}
+
+
+@end
+
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>1A1610D6-1EAC-435A-BF32-0C45E012A01F</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>table 上拉下拉</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>pri_tableview_pull_push</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

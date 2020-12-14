@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>pri_nsstring_attributed</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string> NSString *string = @"test 字符串";
+ NSArray *tempArray = @[
+     [GYAttributeStyle attributeName:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, 1)],
+     [GYAttributeColorStyle withColor:[UIColor grayColor] range:NSMakeRange(1, 1)],
+     [GYAttributeFontStyle withFonte:[UIFont systemFontOfSize:30] range:NSMakeRange(2, 1)]
+ ];
+ curBalanceLab.attributedText = [string attributeStringWithStyles:tempArray];</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>979ADA19-EA2A-46D3-97B4-8E91DBB622F6</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>pri_nsstring_attributed</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

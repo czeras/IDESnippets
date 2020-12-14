@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>pri_yunshanfu_shixian</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>CPPayDelegate
+-(GYHomePayView *)homePayView {
+    if (!_homePayView) {
+        _homePayView = [[GYHomePayView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        _homePayView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.3];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(paySuccess) name:kPaySuccNotification object:nil];
+        [[AppDelegate sharedAppDelegate].window addSubview:self.homePayView];
+        
+        @weakify(self);
+        
+        // 云闪付回调
+        _homePayView.yunPayCallBlock = ^(NSDictionary * _Nullable orderDict, NSString * _Nullable modelStr) {
+            @strongify(self);
+            [self yunshanfuPayOrderDict:orderDict payModel:modelStr];
+        };
+    }
+    return _homePayView;
+}
+
+#pragma mark - 调用云闪付-------
+// TODO: 调用云闪付
+-(void)yunshanfuPayOrderDict:(NSDictionary *)dict payModel:(NSString *)modelStr{
+    CPPayReq *payReq = [[CPPayReq alloc] init];
+    payReq.orderInfo = [[NSDictionary alloc] initWithDictionary:dict];
+    payReq.mode = modelStr;
+
+    [CPPaySDK payWithViewController:self withDelegate:self withReq:payReq];
+}
+
+- (void)onPayResp:(CPPayResp *)resp{
+    // respCode : 0000 支付成功
+    if([resp.respCode isEqualToString:@"0000"]){
+        [self paySuccess];
+        [_homePayView hide];
+    }
+}
+
+//- (void)onPayModeTrigger:(NSString*)payMode;
+-(void)onPayModeTrigger:(NSString *)payMode{
+    NSLog(@"");
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>8451D56B-3469-4431-8A42-4F76DFDD852E</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>pri_yunshanfu_shixian</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

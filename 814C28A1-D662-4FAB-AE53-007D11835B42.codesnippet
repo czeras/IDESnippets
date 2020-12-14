@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>pri_yunshanfu_net</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>{
+            __auto_type hud=[GYHUDHelper showImg];
+            __auto_type req = [[GYUPPayRequest alloc] init];
+            req.clientType=@"2";
+            req.payerUserId=GYAccountHelper.sharedInstance.currentUser.userId;
+            req.payeeUserId=@"0";
+            req.paymentMethod=@"2";
+            req.tradeAmount=self.tradeAmount;
+            req.tradeType=@"0";
+            req.debugEnabled = YES;
+            req.debugEnabled = YES;
+            [req start:^(id  _Nullable requestResult, NSError * _Nullable error) {
+                if (error) {
+                    [hud onTips:@"好像出错了，请稍后再试"];
+                    return;
+                }
+                if (!gy_resultOK(requestResult)) {
+                    [hud onTips:requestResult[@"message"]];
+                    return;
+                }
+                [hud hideAnimated:YES];
+
+                NSString *tempOrderInfoStr = requestResult[@"data"][@"orderInfo"];
+                NSString *tempMode = requestResult[@"data"][@"mode"];
+                NSDictionary *tmpOrderDict = [self dictionaryWithJsonString:tempOrderInfoStr];
+                
+                if (self.yunPayCallBlock) {
+                    self.yunPayCallBlock(tmpOrderDict, tempMode);
+                }
+                return;
+            }];
+        }</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>814C28A1-D662-4FAB-AE53-007D11835B42</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>pri_yunshanfu_net</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

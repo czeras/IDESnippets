@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>pri_tableCell_desc</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>//
+//  GYStatisticsTableCell.m
+//  Tenant
+//
+//  Created by 王朝孟 on 2020/9/21.
+//  Copyright © 2020 wuhangongyou. All rights reserved.
+//
+
+#import "GYStatisticsTableCell.h"
+#import "GYStatisticsModel.h"
+
+@class GYStatisticsModel;
+
+@interface GYStatisticsTableCell : UITableViewCell
+
+@property (nonatomic,strong) GYStatisticsModel *statisModel;
+
+@end
+
+
+@interface GYStatisticsTableCell ()
+// 项目名称
+@property (nonatomic,strong) UILabel *projectLab;
+// 项目状态
+@property (nonatomic,strong) UILabel *projectStatsLab;
+// 跑趟/接单车辆
+@property (nonatomic,strong) UILabel *runOrderLab;
+// 正常/异常趟数
+@property (nonatomic,strong) UILabel *normalLab;
+// 已支付
+@property (nonatomic,strong) UILabel *paidLab;
+// 待支付
+@property (nonatomic,strong) UILabel *upPaidLab;
+@end
+
+@implementation GYStatisticsTableCell
+
+-(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        self.backgroundColor = [UIColor clearColor];
+        [self createSubViews];
+    }
+    return self;
+}
+
+-(void)createSubViews{
+    UIView *bgView = [[UIView alloc] init];
+    bgView.backgroundColor = [UIColor whiteColor];
+    [self.contentView addSubview:bgView];
+    [bgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.contentView.mas_left).offset(w750(40));
+        make.right.equalTo(self.contentView.mas_right).offset(-w750(40));
+        make.top.equalTo(self.contentView.mas_top).offset(w750(10));
+        make.bottom.equalTo(self.contentView.mas_bottom).offset(-w750(10));
+    }];
+    
+    bgView.layer.cornerRadius = 6.0f;
+    
+    _projectLab = [UILabel labWithTitle:@"" mediumFontSize:32 textColor:RGB16(0x333333)];
+    [bgView addSubview:_projectLab];
+    [_projectLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(bgView.mas_left).offset(w750(20));
+        make.top.equalTo(bgView.mas_top).offset(w750(40));
+    }];
+    
+    _projectStatsLab = [UILabel labWithTitle:@"" fontSize:20 textColor:RGB16(0x44D7B6)];
+    _projectStatsLab.textAlignment = NSTextAlignmentCenter;
+    [bgView addSubview:_projectStatsLab];
+    [_projectStatsLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_projectLab.mas_right).offset(w750(20));
+        make.centerY.equalTo(_projectLab.mas_centerY);
+        make.height.mas_equalTo(w750(32));
+        make.width.mas_equalTo(w750(88));
+    }];
+    [self.contentView layoutIfNeeded];
+    
+    _projectStatsLab.layer.cornerRadius = w750(32)/2.0;
+    _projectStatsLab.layer.masksToBounds = YES;
+    
+    UILabel *tempRunOrderLab = [UILabel labWithTitle:@"跑趟车辆/接单车辆" fontSize:28 textColor:RGB16(0x666666)];
+    [bgView addSubview:tempRunOrderLab];
+    [tempRunOrderLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_projectLab.mas_left);
+        make.top.equalTo(_projectLab.mas_bottom).offset(w750(40));
+    }];
+    
+    _runOrderLab = [UILabel labWithTitle:@"" fontSize:28 textColor:RGB16(0x333333)];
+    [bgView addSubview:_runOrderLab];
+    [_runOrderLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(bgView.mas_right).offset(-w750(20));
+        make.centerY.equalTo(tempRunOrderLab.mas_centerY);
+    }];
+    
+    UILabel *tempNormalLab = [UILabel labWithTitle:@"正常趟数/异常趟数" fontSize:28 textColor:RGB16(0x666666)];
+    [bgView addSubview:tempNormalLab];
+    [tempNormalLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_projectLab.mas_left);
+        make.top.equalTo(tempRunOrderLab.mas_bottom).offset(w750(20));
+    }];
+
+    _normalLab = [UILabel labWithTitle:@"" fontSize:28 textColor:RGB16(0x333333)];
+    [bgView addSubview:_normalLab];
+    [_normalLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(_runOrderLab.mas_right);
+        make.centerY.equalTo(tempNormalLab.mas_centerY);
+    }];
+
+    UILabel *tempPaidLab = [UILabel labWithTitle:@"已支付" fontSize:28 textColor:RGB16(0x666666)];
+    [bgView addSubview:tempPaidLab];
+    [tempPaidLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(tempRunOrderLab.mas_left);
+        make.top.equalTo(tempNormalLab.mas_bottom).offset(w750(20));
+    }];
+    _paidLab = [UILabel labWithTitle:@"" mediumFontSize:30 textColor:RGB16(0x44D7B6)];
+    [bgView addSubview:_paidLab];
+    [_paidLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(_runOrderLab.mas_right);
+        make.centerY.equalTo(tempPaidLab.mas_centerY);
+    }];
+
+    UILabel *tempUpPaidLab = [UILabel labWithTitle:@"待支付" fontSize:28 textColor:RGB16(0x666666)];
+    [bgView addSubview:tempUpPaidLab];
+    [tempUpPaidLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(tempPaidLab.mas_left);
+        make.top.equalTo(tempPaidLab.mas_bottom).offset(w750(20));
+    }];
+    _upPaidLab = [UILabel labWithTitle:@"" mediumFontSize:30 textColor:RGB16(0xFF8380)];
+    [bgView addSubview:_upPaidLab];
+    [_upPaidLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(_runOrderLab.mas_right);
+        make.centerY.equalTo(tempUpPaidLab.mas_centerY);
+    }];
+}
+
+-(void)setStatisModel:(GYStatisticsModel *)statisModel{
+    _statisModel = statisModel;
+    
+    NSString *proNameStr = _statisModel.projectName;
+    
+    if (proNameStr.length &gt; 15) {
+        proNameStr = [[proNameStr substringToIndex:15] stringByAppendingString:@"..."];
+    }
+
+    _projectLab.text = proNameStr;
+    
+    // 项目状态更具后台返回的字段判断 0--正常 1--停工 2--已到期
+    switch (_statisModel.projectStatus) {
+        case 0:
+        {
+            _projectStatsLab.text = @"开工中";
+            _projectStatsLab.backgroundColor = RGB16(0xECFFFB);
+            _projectStatsLab.textColor = RGB16(0x44D7B6);
+        }break;
+        case 1:
+        {
+            _projectStatsLab.text = @"停工中";
+            _projectStatsLab.backgroundColor = RGB16(0xFF8380);
+            _projectStatsLab.textColor = RGB16(0xFFE8E7);
+        }break;
+        case 2:
+        {
+            _projectStatsLab.text = @"已到期";
+            _projectStatsLab.backgroundColor = RGB16(0xEEEEEE);
+            _projectStatsLab.textColor = RGB16(0x999999);
+        }break;
+        default:
+            break;
+    }
+    // 接单车辆
+    _runOrderLab.text = [NSString stringWithFormat:@"(%ld/%ld)辆",(long)_statisModel.routeMachineNum,(long)_statisModel.receivingOrderMachineNum];
+    
+    // 正常/异常趟数
+    _normalLab.text = [NSString stringWithFormat:@"(%ld/%ld)趟",(long)_statisModel.normalRoute,(long)_statisModel.exceptionRoute];
+    
+    _paidLab.attributedText = [self paidLabAndUnPaidAttriStr:_statisModel.paidAmount color:RGB16(0x44D7B6)];
+    
+    _upPaidLab.attributedText = [self paidLabAndUnPaidAttriStr:_statisModel.noPayAmount color:RGB16(0xFF8380)];
+}
+
+-(NSMutableAttributedString *)paidLabAndUnPaidAttriStr:(NSString *)str color:(UIColor *)color{
+    NSString *tempMoneyStr = [NSString stringChangeMoneyWithStr:str numberStyle:kCFNumberFormatterDecimalStyle];
+    tempMoneyStr = [NSString stringWithFormat:@"￥%@", tempMoneyStr];
+    
+    NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc]initWithString:tempMoneyStr];
+    
+    [attributeStr addAttributes:@{NSFontAttributeName:[UIFont pingFangFontOfSize:12],NSForegroundColorAttributeName:color} range:NSMakeRange(0, 1)];
+
+    return attributeStr;
+}
+
+
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    // Initialization code
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+@end
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>497BC3AA-625F-4F74-B054-2C331CAD7848</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>pri_tableCell_desc</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

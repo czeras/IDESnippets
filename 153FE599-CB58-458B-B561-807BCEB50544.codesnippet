@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>pri_net_request_model</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>#import "GYBaseRequest.h"
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface GYDamagesReq : GYBaseRequest
+
+@property(nonatomic,assign)NSInteger pageNo;
+@property(nonatomic,assign)NSInteger pageSize;
+
+@end
+
+
+@implementation GYDamagesReq
+
+- (NSString *)packageName {
+    return GY_API_ORDER_CENTER;
+}
+
+- (NSString *)serviceName {
+    return @"jxcProject";
+}
+
+- (NSString *)method {
+    return @"v2.2.3/private/tenantryProjectStatistics";
+}
+- (NSInteger)HTTPMethod {
+    return GYRequestMethodPost;
+}
+
+- (NSDictionary *)requestArgument{
+    return [self mj_keyValuesWithKeys:@[gy_sel_str(pageNo),
+                                        gy_sel_str(pageSize)]];
+}
+
+- (AFHTTPRequestSerializer *)requestSerializer {
+    return [AFJSONRequestSerializer serializer];
+}
+
+
+@end
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>153FE599-CB58-458B-B561-807BCEB50544</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>pri_net_request_model</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
