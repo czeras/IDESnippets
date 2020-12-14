@@ -11,7 +11,6 @@ Xcode 代码块
 ##### 一、XCode代码块所在位置
 
 ```
-dddd
 ~/Library/Developer/Xcode/UserData/CodeSnippets
 ```
 ##### 二、打开终端，把CodeSnippets文件夹上传到码云
