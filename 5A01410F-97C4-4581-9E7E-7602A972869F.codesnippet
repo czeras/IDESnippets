@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>pri_decimalNumber</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>//货币算法 使用NSDecimalNumber 来进行精准计算
+    //float  double  在计算时会产生误差
+    
+    //加法
+    //声明两个  NSDecimalNumber
+    NSDecimalNumber *jiafa1 = [NSDecimalNumber decimalNumberWithString:@"55.55555"];
+    NSDecimalNumber *jiafa2 = [NSDecimalNumber decimalNumberWithString:@"0.11111"];
+    
+    //加法运算函数  decimalNumberByAdding
+    NSDecimalNumber *jiafa = [jiafa1 decimalNumberByAdding:jiafa2];
+    NSLog(@"加法 %@",jiafa);
+    
+    //减法
+    //声明两个  NSDecimalNumber
+    NSDecimalNumber *jianfa1 = [NSDecimalNumber decimalNumberWithString:@"55.55555"];
+    NSDecimalNumber *jianfa2 = [NSDecimalNumber decimalNumberWithString:@"0.11111"];
+    
+    //减法运算函数  decimalNumberByAdding
+    NSDecimalNumber *jianfa = [jianfa1 decimalNumberBySubtracting:jianfa2];
+    NSLog(@"减法 %@", jianfa);
+    
+    //乘法
+    //声明两个  NSDecimalNumber
+    NSDecimalNumber *chengfa1 = [NSDecimalNumber decimalNumberWithString:@"55.55555"];
+    NSDecimalNumber *chengfa2 = [NSDecimalNumber decimalNumberWithString:@"0.11111"];
+    
+    //乘法运算函数  decimalNumberByAdding
+    NSDecimalNumber *chengfa = [chengfa1 decimalNumberByMultiplyingBy:chengfa2];
+    NSLog(@"乘法 %@", chengfa);
+    
+    //除法
+    //声明两个  NSDecimalNumber
+    NSDecimalNumber *chufa1 = [NSDecimalNumber decimalNumberWithString:@"55"];
+    NSDecimalNumber *chufa2 = [NSDecimalNumber decimalNumberWithString:@"3"];
+    
+    //除法运算函数  decimalNumberByAdding
+    NSDecimalNumber *chufa = [chufa1 decimalNumberByDividingBy:chufa2];
+    NSLog(@"除法 %@",chufa);
+    
+    
+    //比较大小
+    NSDecimalNumber*discount1 = [NSDecimalNumber decimalNumberWithString:@".85"];
+    NSDecimalNumber*discount2 = [NSDecimalNumber decimalNumberWithString:@".9"];
+
+    NSComparisonResult result = [discount1 compare:discount2];
+    if (result ==NSOrderedAscending) {
+       NSLog(@"85%% &lt; 90%%小于");
+    } else if (result == NSOrderedSame) {
+       NSLog(@"85%% == 90%%等于");
+    } else if (result ==NSOrderedDescending) {
+        NSLog(@"85%% &gt; 90%%大于");
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>5A01410F-97C4-4581-9E7E-7602A972869F</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C-Plus-Plus</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>货币算法 使用NSDecimalNumber 来进行精准计算</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>pri_decimalNumber</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>
