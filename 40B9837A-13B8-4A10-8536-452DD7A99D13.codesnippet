@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>pri_jsonStr</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>NSString *testStr = [self getJsonStr:&lt;#(NSDictionary *)#&gt;];
+NSLog(@"\n\n\n\n %@ \n\n\n\n",testStr);
+
+-(NSString*)getJsonStr:(NSDictionary*)dic{
+    
+    NSError *error = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&amp;error];
+    if ([jsonData length] &gt; 0 &amp;&amp; error == nil){
+        NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        return jsonString;
+    }else{
+        return nil;
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>40B9837A-13B8-4A10-8536-452DD7A99D13</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>pri_jsonStr</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>pri_jsonStr</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
