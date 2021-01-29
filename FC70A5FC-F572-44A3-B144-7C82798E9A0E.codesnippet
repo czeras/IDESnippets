@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>pri_github_search</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>博客地址
+https://blog.csdn.net/qq826688096/article/details/104811213
+
+高级搜索地址： https://github.com/search/advanced （记得切换成中文说明）
+
+高级搜索官方说明文档： https://help.github.com/en/github/searching-for-information-on-github/understanding-the-search-syntax
+
+
+输入语法： springboot stars:&gt;10000
+
+含义： 这表示搜索带有springboot文字的信息，并且stars收藏数大于10000的数据。
+
+ 
+
+输入语法： springboot forks:&gt;1000
+
+含义：在搜索结果中forks数大于1000的
+
+ 
+
+输入语法： springboot pushed:&gt;2020-01-02
+含义： 搜索结果中，在2020-01-02时间之后还有更新数据操作的结果。
+
+
+输入语法： language:java
+
+含义： 用Java编写的项目
+
+ 
+
+输入语法：in:name springboot
+
+含义： 在搜索的内容中，搜索发布的资源的标题上面有“springboot”字样的资源数据
+
+ 
+
+输入语法：in:readme springboot
+
+含义： readme中有“springboot”字样的资源数据
+
+
+输入语法：in:description springboot
+
+含义： 在搜索的内容中，描述中有“springboot”字样的资源数据
+
+常用总结：
+
+in:name springboot //搜索名字中带有"springboot "的
+in:readme springboot //搜索readme中带有"springboot "的
+in:description springboot //搜索描述中带有"springboot "的
+stars:&gt;1000 //搜索stars&gt;1000的
+forks:&gt;1000 //搜索forks&gt;1000的
+pushed:&gt;2020-01-02 //搜索最近更新于2020年1月2日之后的
+language:java //搜索java的项目
+
+可以连在一起使用（好像不好使，再研究）：
+
+合并就是： in:name springboot stars:&gt;1000 forks:&gt;1000 pushed:&gt;2021-01-02 language:java</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>FC70A5FC-F572-44A3-B144-7C82798E9A0E</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C-Plus-Plus</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>pri_github_search</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>pri_github_search</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>
