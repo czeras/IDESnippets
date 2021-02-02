@@ -12,7 +12,7 @@
 	<string>GYInformationDetailCell
 - (CGFloat)cellHeight {
     [self layoutIfNeeded];
-
+    
     float maxUINum = CGRectGetMaxY(_bgContentView.frame);
     
     /**
@@ -48,21 +48,32 @@
      */
     float tttttt;
     if (self.data.dataArray.count == 3) {
+        // 关闭状态
         if (!self.data.mudMoreItem) {
             tttttt = w750(40)-w750(40)*(self.data.dataArray.count-1);
-        } else {
+        }
+        // 打开状态
+        else {
+            tttttt = -w750(40)-w750(40)*(self.data.dataArray.count);
+        }
+    } else if(self.data.dataArray.count == 2){
+        // 关闭状态
+        if (!self.data.mudMoreItem) {
             tttttt = w750(40)-w750(40)*(self.data.dataArray.count);
         }
-    }else {
+        // 打开状态
+        else {
+            tttttt = w750(40)-w750(40)*(self.data.dataArray.count);
+        }
+    }
+    else {
         tttttt = w750(40)-w750(40)*(self.data.dataArray.count-1);
     }
     
-    
     float maxHeight = w750(maxUINum*2)+w750(20)-(tttt * self.data.dataArray.count)+tttttt;
-
+    
     return maxHeight;
-}
-</string>
+}</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>8EBA0EEB-2A47-4D2B-8805-01E2B75A85DA</string>
 	<key>IDECodeSnippetLanguage</key>
