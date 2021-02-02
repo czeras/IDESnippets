@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>pri_GYInformationDetailCell_cellHeight</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>GYInformationDetailCell
+- (CGFloat)cellHeight {
+    [self layoutIfNeeded];
+
+    float maxUINum = CGRectGetMaxY(_bgContentView.frame);
+    
+    /**
+     tttt
+     w750(24): 回收口距离顶部的距离
+     w750(20): 地址 距离上一个控件的距离
+     w750(20): 单价距离 地址的上面的控件的间隔
+     w750(20)*N-1: 当前的数据源距离底部的距离，如果只有一个的时候不计算
+     */
+    
+    float tttt;
+    
+    if (self.data.dataArray.count == 1) {
+        if (!self.data.mudMoreItem) {
+            tttt = w750(24) + w750(20)+ w750(20) - w750(20)*(self.data.dataArray.count-1);
+        } else {
+            tttt = w750(24) + w750(20)+ w750(20) +w750(20)*3 - w750(20)*(self.data.dataArray.count-1);
+        }
+    } else {
+        if (!self.data.mudMoreItem) {
+            tttt = w750(24) + w750(20)+ w750(20) - w750(20)*(self.data.dataArray.count-1);
+        } else {
+            tttt = w750(24) + w750(20)+ w750(20)  - w750(20)*(self.data.dataArray.count-1);
+        }
+    }
+    
+    /*
+     tttttt
+     w750(40): 第一个间距
+     w750(40): 第二个距离上面 一个间距
+     w750(20): 单价距离 地址的上面的控件的间隔
+     w750(20)*N-1: 当前的数据源距离底部的距离，如果只有一个的时候不计算
+     */
+    float tttttt;
+    if (self.data.dataArray.count == 3) {
+        if (!self.data.mudMoreItem) {
+            tttttt = w750(40)-w750(40)*(self.data.dataArray.count-1);
+        } else {
+            tttttt = w750(40)-w750(40)*(self.data.dataArray.count);
+        }
+    }else {
+        tttttt = w750(40)-w750(40)*(self.data.dataArray.count-1);
+    }
+    
+    
+    float maxHeight = w750(maxUINum*2)+w750(20)-(tttt * self.data.dataArray.count)+tttttt;
+
+    return maxHeight;
+}
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>8EBA0EEB-2A47-4D2B-8805-01E2B75A85DA</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>pri_GYInformationDetailCell_cellHeight</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>pri_GYInformationDetailCell_cellHeight</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>
