@@ -14,7 +14,7 @@
         GYOrderTipsItem *tipsItem = [[GYOrderTipsItem alloc] init];
         [arrayM2 addObject:tipsItem];
     }
-    
+    dffefefefefef
     NSArray *tempMunArr = @[@"泥口一：",@"泥口二：",@"泥口三："];
     NSArray *orderMudList = self.orderItem.jxcSiteInfoVoList;
     for (int i = 0; i&lt;orderMudList.count; i++) {
