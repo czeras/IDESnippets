@@ -64,7 +64,7 @@
 	<key>IDECodeSnippetIdentifier</key>
 	<string>5A01410F-97C4-4581-9E7E-7602A972869F</string>
 	<key>IDECodeSnippetLanguage</key>
-	<string>Xcode.SourceCodeLanguage.Objective-C-Plus-Plus</string>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
 	<key>IDECodeSnippetSummary</key>
 	<string>货币算法 使用NSDecimalNumber 来进行精准计算</string>
 	<key>IDECodeSnippetTitle</key>
