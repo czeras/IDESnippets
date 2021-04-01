@@ -3,21 +3,22 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>pri_dep_desc</string>
+	<string>pri_assert_desc</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>@property (nonatomic, strong)NSString  *machineCarNo DEPRECATED_MSG_ATTRIBUTE("v2.3.9, 此参数没有使用");</string>
+	<string>NSAssert(self.intoType != nil,@"intoType 不能为空！");
+    NSLog(@"intoType is %@.",self.intoType);</string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>4434F38C-87E3-4C05-9259-42756EF46FAA</string>
+	<string>0AE2D707-790C-433C-ACA4-1EDAAACBDD0C</string>
 	<key>IDECodeSnippetLanguage</key>
-	<string>Xcode.SourceCodeLanguage.Objective-C-Plus-Plus</string>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>标记参数&amp;方法不可废弃</string>
+	<string>pri_assert_desc</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>pri_dep_desc</string>
+	<string>pri_assert_desc</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>

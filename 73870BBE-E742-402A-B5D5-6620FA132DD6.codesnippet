@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>pri_https_code</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>__auto_type hud=[GYHUDHelper showImg];
+__auto_type req=[[GYAccountWXAutoReq alloc] init];
+req.code = dict[@"code"];
+req.debugEnabled=YES;
+
+@weakify(self);
+[req start:^(id  _Nullable requestResult, NSError * _Nullable error) {
+    @strongify(self);
+    [hud hideAnimated:YES];
+    
+    if (error) {
+        [hud onTips:@"好像出错了，请稍后再试"];
+        return ;
+    }
+    if (!gy_resultOK(requestResult)) {
+        [hud onTips:requestResult[@"message"]];
+        return ;
+    }
+    
+    self.wxAuth = YES;
+}];</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>73870BBE-E742-402A-B5D5-6620FA132DD6</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>网络请求封装</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>pri_https_code</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

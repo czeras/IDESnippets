@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>pri_imageTitBtn</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>ImageTitleButton *searchBtn=[[ImageTitleButton alloc] initWithStyle:EImageLeftTitleRight];
+    self.searchBtn = searchBtn;
+    if (self.addressString.length == 0) {
+        [searchBtn setTitle:@"搜索" forState:UIControlStateNormal];
+        [searchBtn setTitleColor:RGB16(0xB3B3B3) forState:UIControlStateNormal];
+    } else {
+        [searchBtn setTitle:self.addressString forState:UIControlStateNormal];
+        [searchBtn setTitleColor:RGB16(0x333333) forState:UIControlStateNormal];
+    }
+    searchBtn.titleLabel.font = [UIFont pingFangFontOfSize:w750(30)];
+    [searchBtn setImage:[UIImage imageNamed:@"sousuo"] forState:UIControlStateNormal];
+    [searchBtn setImage:[UIImage imageNamed:@"sousuo"] forState:UIControlStateHighlighted];
+    searchBtn.margin=UIEdgeInsetsMake(0, w750(10), 0, 0);
+    searchBtn.padding = CGSizeMake(w750(10), 0);
+    searchBtn.layer.cornerRadius = w750(40);
+    searchBtn.layer.masksToBounds = YES;
+    [searchBtn addTarget:self action:@selector(searchBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    [cornnerView addSubview:searchBtn];
+    [searchBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.equalTo(cornnerView.mas_height);
+        make.left.equalTo(lineView.mas_right).offset(w750(10));
+        make.right.equalTo(cornnerView);
+        make.centerY.equalTo(cornnerView);
+    }];</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>5ED509D8-1E9A-4334-B9D1-CD895F8DC0D2</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C-Plus-Plus</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>pri_imageTitBtn</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>pri_imageTitBtn</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>
