@@ -9,9 +9,16 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>#pragma mark - 获取项目列表数据
-[self setupRefresh];
+	<string>#pragma 获取数据 ---
 
+// &lt;#变量描述#&gt;
+@property(nonatomic,strong)GYGetSiteInfoDetailReq *detailReq;
+// &lt;#变量描述#&gt;
+@property(nonatomic,strong)NSMutableArray *dataArray;
+// &lt;#变量描述#&gt;
+@property(nonatomic,assign)int pageCount;
+
+#pragma mark - 获取项目列表数据
 - (void)setupRefresh {
     @weakify(self);
     __auto_type refreshHandler = ^(BOOL loadMore) {
@@ -57,13 +64,17 @@
 
 - (void)loadDataMore:(BOOL)loadMore succ:(GYCommonArrayBlock)succ fail:(void (^)(NSError * _Nonnull))fail {
     @weakify(self);
-    self.request = [[GYFirstProjectListReq alloc] init];
+    self.detailReq = [[GYGetSiteInfoDetailReq alloc] init];
+    
     NSInteger pageNo = loadMore ? self.pageCount + 1 : 1;
-    self.request.flag = 1;
-    self.request.pageNo = pageNo;
-    self.request.pageSize = 10;
-    self.request.debugEnabled = YES;
-    [self.request start:^(id  _Nullable requestResult, NSError * _Nullable error) {
+    
+    self.detailReq.flag = 3;
+    self.detailReq.projectId = @"";
+    self.detailReq.orderId = @"orderId";
+    self.detailReq.machineCardNo = @"";
+    
+    self.detailReq.debugEnabled = YES;
+    [self.detailReq start:^(id  _Nullable requestResult, NSError * _Nullable error) {
         @strongify(self);
         if (error) {
             !fail ?: fail(error);
@@ -75,13 +86,14 @@
         }
         
         NSArray *items = [GYNewProgramListModel mj_objectArrayWithKeyValuesArray:requestResult[@"data"][@"queryResult"]];
-        NSString *totalCount = requestResult[@"data"][@"pageCount"];
-        BOOL hasMore = pageNo &lt; totalCount.integerValue;
-        self.pageCount = pageNo;
-        !succ ?: succ(items, hasMore);
+
+        !succ ?: succ(items, NO);
     }];
 }
-</string>
+-(void)cancelCurrentLoading{
+    [self.detailReq cancel];
+}
+#pragma mark -- 获取数据结束 ---</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>218005AF-A453-4BAE-A9E8-5FA1FB5EDE83</string>
 	<key>IDECodeSnippetLanguage</key>
