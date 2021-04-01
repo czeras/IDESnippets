@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>pri_load_net</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>#pragma mark - 获取项目列表数据
+[self setupRefresh];
+
+- (void)setupRefresh {
+    @weakify(self);
+    __auto_type refreshHandler = ^(BOOL loadMore) {
+        @strongify(self);
+        [self cancelCurrentLoading];
+        [self loadDataMore:loadMore succ:^(NSArray&lt;GYNewProgramListModel *&gt; * _Nonnull items, BOOL hasMore) {
+            @strongify(self);
+            if (loadMore) {
+                [self.items addObjectsFromArray:items];
+            } else {
+                [self.items setArray:items];
+            }
+            [self.tableView gy_endRefresh:loadMore hasMore:hasMore hasError:NO];
+            [self.tableView reloadData];
+            self.tableView.emptyState = self.items.count &gt; 0 ? MyEmptyStateNone : MyEmptyStateEmptyList;
+        } fail:^(NSError * _Nonnull error) {
+            @strongify(self);
+            if (!self) { return; }
+            [GYHUDHelper showMessage:@"好像出错了，请稍后再试"];
+            [self.tableView gy_endRefresh:loadMore hasMore:NO hasError:YES];
+            self.tableView.emptyState = MyEmptyStateFailed;
+        }];
+    };
+    
+    [self.tableView gy_setPullToRefreshHandler:^{
+        @strongify(self);
+        if (self.tableView.gy_isFooterRefreshing) {
+            [self.tableView gy_loadMoreFinished];
+        }
+        refreshHandler(NO);
+    }];
+    
+    [self.tableView gy_setPullToLoadMoreHandler:^{
+        @strongify(self);
+        if (self.tableView.gy_isHeaderRefreshing) {
+            [self.tableView gy_refreshFinished];
+        }
+        refreshHandler(YES);
+    }];
+    
+    [self.tableView gy_pullToRefresh];
+}
+
+- (void)loadDataMore:(BOOL)loadMore succ:(GYCommonArrayBlock)succ fail:(void (^)(NSError * _Nonnull))fail {
+    @weakify(self);
+    self.request = [[GYFirstProjectListReq alloc] init];
+    NSInteger pageNo = loadMore ? self.pageCount + 1 : 1;
+    self.request.flag = 1;
+    self.request.pageNo = pageNo;
+    self.request.pageSize = 10;
+    self.request.debugEnabled = YES;
+    [self.request start:^(id  _Nullable requestResult, NSError * _Nullable error) {
+        @strongify(self);
+        if (error) {
+            !fail ?: fail(error);
+            return;
+        }
+        if (!gy_resultOK(requestResult)) {
+            !fail ?: fail([NSError errorWithCode:gy_errorCode(requestResult) localizedMsg:requestResult[@"message"]]);
+            return;
+        }
+        
+        NSArray *items = [GYNewProgramListModel mj_objectArrayWithKeyValuesArray:requestResult[@"data"][@"queryResult"]];
+        NSString *totalCount = requestResult[@"data"][@"pageCount"];
+        BOOL hasMore = pageNo &lt; totalCount.integerValue;
+        self.pageCount = pageNo;
+        !succ ?: succ(items, hasMore);
+    }];
+}
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>218005AF-A453-4BAE-A9E8-5FA1FB5EDE83</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>pri_load_net</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>pri_load_net</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>
