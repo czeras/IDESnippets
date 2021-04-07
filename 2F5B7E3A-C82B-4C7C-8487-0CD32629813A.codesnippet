@@ -22,6 +22,6 @@ NSAssert(self.model.projectOrderId != nil,@"projectOrderId 不能为空！");</s
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>
-	<integer>0</integer>
+	<integer>2</integer>
 </dict>
 </plist>

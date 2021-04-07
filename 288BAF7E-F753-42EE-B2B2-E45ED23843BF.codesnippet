@@ -10,7 +10,7 @@
 	</array>
 	<key>IDECodeSnippetContents</key>
 	<string>// &lt;#变量描述#&gt;
-@property(nonatomic,copy)&lt;#Block#&gt; &lt;#block#&gt;;</string>
+@property (nonatomic,  copy) &lt;#Block#&gt; &lt;#block#&gt;;</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>288BAF7E-F753-42EE-B2B2-E45ED23843BF</string>
 	<key>IDECodeSnippetLanguage</key>

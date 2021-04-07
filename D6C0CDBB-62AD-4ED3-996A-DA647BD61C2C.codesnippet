@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>pri_tableView_delegate</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>#pragma mark -- tableView 代理 --
+#pragma mark - UIScrollViewEmptyDelegate
+- (UIView *)scrollView:(UIScrollView *)scrollView emptyViewForState:(MyEmptyState)state {
+    GYCommonEmptyView *view = nil;
+    switch (state) {
+        case MyEmptyStateEmptyList: {
+            NSString *title = [NSString stringWithFormat:@"暂无更换的泥口，请立即新增！"];
+            GYCommonEmptyView *view = [[GYCommonEmptyView alloc] init];
+            view.backgroundColor=[UIColor whiteColor];
+            view.titleLabel.text = title;
+            view.imageView.image = [UIImage imageNamed:@"empty_img"];
+            view.imageSize=CGSizeMake(200, 135);
+            view.buttonPaddingTop = 10;
+            
+            UIButton *postButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            [postButton setTitle:@"新增泥口" forState:UIControlStateNormal];
+            postButton.titleLabel.font = UIFont.pfBold32_scale;
+            [postButton setTitleColor:RGB16(0x333333) forState:UIControlStateNormal];
+            [postButton addTarget:self action:@selector(addNewMudBtnAction) forControlEvents:UIControlEventTouchUpInside];
+            [postButton setBackgroundImage:[UIImage createImageSize:CGSizeMake(w750(240), w750(80))] forState:UIControlStateNormal];
+            postButton.size = CGSizeMake(w750(98*2), w750(26*2));
+            postButton.backgroundColor=RGB16(0xFFD246);
+            
+            postButton.layer.borderWidth = 2;
+            postButton.layer.borderColor = [UIColor blackColor].CGColor;
+            
+            UIButton *view2 =[[UIButton alloc] init];
+            [view2 addSubview:postButton];
+            [postButton mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.center.equalTo(view2);
+                make.size.mas_equalTo(CGSizeMake(w750(98*2), w750(26*2)));
+            }];
+            APPViewBorderRadius(postButton, w750(26), 1, [UIColor clearColor]);
+            view.customButton = view2;
+            
+            view.backgroundColor = [UIColor clearColor];
+            return view;
+        }
+            break;
+        case MyEmptyStateFailed:
+            view = GYEmptyViewUtil.errorView;
+            break;
+        default:
+            break;
+    }
+    return view;
+}
+  
+#pragma mark - UIScrollViewEmptyDelegate
+- (BOOL)emptyViewShouldAllowTouch:(UIScrollView *)scrollView forState:(MyEmptyState)state {
+    return state == MyEmptyStateFailed;
+}
+
+- (void)scrollView:(UIScrollView *)scrollView didTap:(UIView *)view {
+    [self.view endEditing:YES];
+    [self.tableView gy_pullToRefresh];
+}
+
+#pragma mark - dele data
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.dataArray.count;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return w750(197*2);
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    GYChoseMudTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass(GYChoseMudTableViewCell.class)];
+    if (!cell) {
+        cell = [[GYChoseMudTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass(GYChoseMudTableViewCell.class)];
+    }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.listModel = self.dataArray[indexPath.row];
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>D6C0CDBB-62AD-4ED3-996A-DA647BD61C2C</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C-Plus-Plus</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>tableview 代理</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>pri_tableView_delegate</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>
