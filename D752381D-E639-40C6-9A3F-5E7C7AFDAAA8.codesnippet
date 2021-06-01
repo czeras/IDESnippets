@@ -9,7 +9,14 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>if (self.orderItem.jxcSiteInfoVoList.count&gt;1) {
+	<string>
+/**tapd 关联代码*/
+--story=1002674 --user=王朝孟 司机控制器代码分模块添加注释，方便查看 https://www.tapd.cn/31845857/s/1098757
+
+
+
+
+if (self.orderItem.jxcSiteInfoVoList.count&gt;1) {
         // 车辆装车后每趟根据雇主需求前往以下泥口之一
         GYOrderTipsItem *tipsItem = [[GYOrderTipsItem alloc] init];
         [arrayM2 addObject:tipsItem];
