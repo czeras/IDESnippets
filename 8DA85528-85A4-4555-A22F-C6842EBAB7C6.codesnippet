@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>pri_net_no_block</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>GYVehicleMachineMonitorReq *vehicleMachineMonitor = [[GYVehicleMachineMonitorReq alloc] init];
+    vehicleMachineMonitor.entityName = self.deviceCodeStr;
+    vehicleMachineMonitor.debugEnabled = YES;
+    [vehicleMachineMonitor start:^(id  _Nullable requestResult, NSError * _Nullable error) {
+        @strongify(self);
+        
+        if (error) {
+            [GYHUDHelper showMessage:@"好像出错了,请稍后再试"];
+            return ;
+        }
+        if (!gy_resultOK(requestResult)) {
+            [GYHUDHelper showMessage:requestResult[@"message"]];
+            return ;
+        }
+        
+        // 处理自己的业务逻辑
+        
+        
+        // 如果要把结果传出去，使用block，否则注释
+        // !succ ?: succ(items, hasMore);
+    }];</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>8DA85528-85A4-4555-A22F-C6842EBAB7C6</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C-Plus-Plus</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>网络请求不要回调数据</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>pri_net_no_block</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
