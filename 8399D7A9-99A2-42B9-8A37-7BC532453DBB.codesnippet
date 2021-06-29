@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>pri_scrollerView_delegate</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>_scroll = [[UIScrollView alloc]init];
+_scroll.y = btns.bottom;
+_scroll.width = self.view.width;
+_scroll.height = self.view.height - btns.bottom;
+_scroll.contentSize = CGSizeMake(arr.count * GYScreenW, 0);
+_scroll.backgroundColor = UIColor.whiteColor;
+_scroll.delegate = self;
+_scroll.showsVerticalScrollIndicator = NO;
+_scroll.showsHorizontalScrollIndicator = NO;
+_scroll.pagingEnabled = YES;
+_scroll.bounces = NO;
+adjustContentInsetNever(_scroll, self);
+[self.view addSubview:_scroll];
+
+// 返回一个放大或者缩小的视图
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+
+}
+// 开始放大或者缩小
+- (void)scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:
+(UIView *)view
+{
+
+}
+
+// 缩放结束时
+- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale
+{
+
+}
+
+// 视图已经放大或缩小
+- (void)scrollViewDidZoom:(UIScrollView *)scrollView
+{
+NSLog(@"scrollViewDidScrollToTop");
+}
+ */
+
+// 是否支持滑动至顶部
+- (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView
+{
+    return YES;
+}
+
+// 滑动到顶部时调用该方法
+- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView
+{
+    NSLog(@"scrollViewDidScrollToTop");
+}
+
+// scrollView 已经滑动
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+
+//常用一般是这个,比如浏览淘宝的时候,
+//有个回到顶部按钮,向上滑动按钮隐藏,
+//向下滑动则显示,就是调用了这个方法
+    NSLog(@"scrollViewDidScroll");
+}
+
+// scrollView 开始拖动
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    NSLog(@"scrollViewWillBeginDragging");
+}
+
+// scrollView 结束拖动
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    NSLog(@"scrollViewDidEndDragging");
+}
+
+// scrollView 开始减速（以下两个方法注意与以上两个方法加以区别）
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
+{
+    NSLog(@"scrollViewWillBeginDecelerating");
+}
+
+// scrollview 减速停止
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+   NSLog(@"scrollViewDidEndDecelerating");
+}
+
+
+// 25 可以是任意数字，可根据自己的需要来设定。
+int _lastPosition;    //A variable define in headfile
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    int currentPostion = scrollView.contentOffset.y;
+    if (currentPostion - _lastPosition &gt; 25) {
+        _lastPosition = currentPostion;
+        NSLog(@"ScrollUp now");
+    }
+    else if (_lastPosition - currentPostion &gt; 25)
+    {
+        _lastPosition = currentPostion;
+        NSLog(@"ScrollDown now");
+    }
+}
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>8399D7A9-99A2-42B9-8A37-7BC532453DBB</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>滚动代理</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>pri_scrollerView_delegate</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
