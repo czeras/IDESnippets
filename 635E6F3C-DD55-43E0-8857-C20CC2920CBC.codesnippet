@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>pri_pod_cartfile_desc</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>项目中使用了 Cartfile 和 Podfile 两种方式
+    此问题是它们两个配置出现问题，解决方法
+
+    1. 打开 Cartfile 文件， 打开注释 第一行代码
+    2. 执行 Carthage update --platform ios 命令
+    3. 打开 Podfile ，注释 pod 'BaiduTraceKit', '~&gt; 3.1.3' 这一行代码，执行 pod install 命令
+    4. 打开项目，全局搜索 ssl (模糊搜索) ，删除 libssl.a 、libcrypto.a
+    5. 打开 Cartfile 注释第一行代码，并执行  Carthage update --platform ios 命令
+    6. 打开 Podfile 取消注释 pod 'BaiduTraceKit', '~&gt; 3.1.3' 这一行代码，执行 pod install 命令</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>635E6F3C-DD55-43E0-8857-C20CC2920CBC</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C-Plus-Plus</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>项目配置问题</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>pri_pod_cartfile_desc</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>
