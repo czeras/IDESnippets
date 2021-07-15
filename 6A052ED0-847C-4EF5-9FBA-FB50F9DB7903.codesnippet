@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>pri_horizontal_view</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>// 重置按钮
+ImageTitleButton *resetBtn = [[ImageTitleButton alloc]initWithStyle:EImageTopTitleBottomCenter maggin:UIEdgeInsetsMake(w750(14), 0, 0, 0) padding:CGSizeMake(w750(24), w750(20))];
+[resetBtn setBackgroundImage:[UIImage createImageSize:CGSizeMake(w750(180), btnh)] forState:UIControlStateNormal]; // 设置按钮渐变色
+[resetBtn setImageSize:CGSizeMake(w750(74), w750(74))];
+resetBtn.titleLabel.font =[UIFont pingFangFontOfSize:w750(28)];
+[resetBtn setTitleColor:RGB16(0x666666) forState:UIControlStateNormal];
+[resetBtn setTitle:@"车辆实时监控" forState:UIControlStateNormal];
+[resetBtn setImage:[UIImage imageNamed:@"monitoring_icon_2_5_6"]
+            forState:UIControlStateNormal];
+[resetBtn setImage:[UIImage imageNamed:@"monitoring_icon_2_5_6"] forState:UIControlStateSelected];
+resetBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
+[_whiteBGView addSubview:resetBtn];
+
+// 右上方
+ImageTitleButton *determineBtn = [[ImageTitleButton alloc]initWithStyle:EImageTopTitleBottomCenter maggin:UIEdgeInsetsMake(w750(14), 0, 0, 0) padding:CGSizeMake(w750(24), w750(24))];
+[determineBtn setImageSize:CGSizeMake(w750(74), w750(74))];
+determineBtn.titleLabel.font =[UIFont pingFangFontOfSize:w750(28)];
+[determineBtn setTitleColor:RGB16(0x666666) forState:UIControlStateNormal];
+[determineBtn setTitle:@"全时段轨迹回放" forState:UIControlStateNormal];
+[determineBtn setImage:[UIImage imageNamed:@"track_playback_2_5_6"]
+             forState:UIControlStateNormal];
+determineBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
+[determineBtn setImage:[UIImage imageNamed:@"track_playback_2_5_6"] forState:UIControlStateSelected];
+
+[_whiteBGView addSubview:determineBtn];
+
+[@[resetBtn,determineBtn] mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedSpacing:w750(0) leadSpacing:w750(0) tailSpacing:w750(0)];
+[@[resetBtn,determineBtn] mas_makeConstraints:^(MASConstraintMaker *make) {
+    make.bottom.equalTo(_whiteBGView.mas_bottom).offset(-w750(40));
+    make.height.mas_equalTo(w750(80));
+}];</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>6A052ED0-847C-4EF5-9FBA-FB50F9DB7903</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>控件横向布局</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>pri_horizontal_view</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

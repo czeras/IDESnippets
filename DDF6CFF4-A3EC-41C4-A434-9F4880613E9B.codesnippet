@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>pri_mj_to_model_replace</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>+ (NSDictionary *)mj_objectClassInArray{
+    //前边，是属性数组的名字，后边就是类名
+    return @{@"queryResult" : @"GYOwnerStatisticsListModel"};
+}
+
++ (NSDictionary *)mj_replacedKeyFromPropertyName{
+    return @{@"totalAmount":@"jxcStatisticsOverallVo.totalAmount",
+             @"totalRouteCount":@"jxcStatisticsOverallVo.totalRouteCount",
+             @"pageCount":@"pageViewDatatable.pageCount",
+             @"pageNo":@"pageViewDatatable.pageNo",
+             @"pageSize":@"pageViewDatatable.pageSize",
+             @"rowCount":@"pageViewDatatable.rowCount",
+             @"queryResult":@"pageViewDatatable.queryResult",
+    };
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>DDF6CFF4-A3EC-41C4-A434-9F4880613E9B</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>mj转模型需要覆盖的字段</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>pri_mj_to_model_replace</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

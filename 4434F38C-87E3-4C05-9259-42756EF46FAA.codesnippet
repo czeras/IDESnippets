@@ -9,7 +9,7 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>@property (nonatomic, strong)NSString  *machineCarNo DEPRECATED_MSG_ATTRIBUTE("v2.3.9, 此参数没有使用");</string>
+	<string>DEPRECATED_MSG_ATTRIBUTE("v2.5.6, 此参数没有使用")</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>4434F38C-87E3-4C05-9259-42756EF46FAA</string>
 	<key>IDECodeSnippetLanguage</key>
