@@ -10,7 +10,7 @@
 	</array>
 	<key>IDECodeSnippetContents</key>
 	<string>@weakify(self);
-    @strongify(self);</string>
+@strongify(self);</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>7A776F21-A4A8-404A-A418-C81068004A77</string>
 	<key>IDECodeSnippetLanguage</key>
