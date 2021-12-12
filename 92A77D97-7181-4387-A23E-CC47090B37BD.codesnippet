@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>pri_version</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>- (void)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
+    
+    //判断当前设备是否为iPad
+    if ([@"appStoreVersion" isEqualToString:call.method]) {
+        
+        
+        // 1、填写自己App的ID
+        NSString * strurl = [[NSString alloc] initWithFormat:@"http://itunes.apple.com/lookup?id=1582568880"];
+        NSURLSession *session=[NSURLSession sharedSession];
+        NSURL *url = [NSURL URLWithString:strurl];
+        
+        //2.创建可变的请求对象
+        NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:url];
+        NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error){
+            
+            //4.解析数据
+            NSDictionary *dict=[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+            NSArray * results = dict[@"results"];
+            NSDictionary * dic = results.firstObject;
+            NSString * lineVersion = dic[@"version"];//版本号
+            NSString * releaseNotes = dic[@"releaseNotes"];//更新说明
+            NSString * trackViewUrl = dic[@"trackViewUrl"];//链接
+            NSLog(@"App store版本号:%@",lineVersion);
+            NSLog(@"更新说明:%@",releaseNotes);
+            NSLog(@"App下载链接:%@",trackViewUrl);
+            
+            // 5、获取本地版本
+            NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+            // 本地app版本
+            NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+            
+            // 6、比较版本信息
+            int tmpStatus = (int)[self compareVersion:lineVersion toVersion:app_Version];
+           
+            if(tmpStatus==1){
+                // 需要升级
+                // 这个返回到flutter层,launch 解析不了
+                NSString *downLoadUrl = @"itms-apps://itunes.apple.com/cn/app/id=1582568880?mt=8";
+                
+                // 7、回到主线程进行后续操
+                NSDictionary *updateVersion = @{
+                    @"version":lineVersion,
+                    @"system":@1,
+                    @"deviceType":@2,
+                    @"downloadUrl":trackViewUrl,
+                    @"content":releaseNotes,
+                    @"createTime":dic[@"currentVersionReleaseDate"],
+                };
+                
+                // 回到主线程
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    result(updateVersion);
+                });
+            }
+            else {
+                // 不需要升级
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    result(NULL);
+                });
+            }
+        }];
+        
+        //3.执行任务
+        [dataTask resume];
+    }
+    else{
+        result(FlutterMethodNotImplemented);
+    }
+}
+
+
+
+/// 版本号比较函数
+/// @param version1 AppStore版本号
+/// @param version2 本地版本号
+/// 1:appstore版本号大于本地版本号 -1:appstore版本号小于本地版本号 0:版本号相等
+- (NSInteger)compareVersion:(NSString *)version1 toVersion:(NSString *)version2
+{
+    NSArray *list1 = [version1 componentsSeparatedByString:@"."];
+    NSArray *list2 = [version2 componentsSeparatedByString:@"."];
+    for (int i = 0; i &lt; list1.count || i &lt; list2.count; i++)
+    {
+        NSInteger a = 0, b = 0;
+        if (i &lt; list1.count) {
+            a = [list1[i] integerValue];
+        }
+        if (i &lt; list2.count) {
+            b = [list2[i] integerValue];
+        }
+        if (a &gt; b) {
+            return 1;//version1大于version2
+        } else if (a &lt; b) {
+            return -1;//version1小于version2
+        }
+    }
+    return 0;//version1等于version2
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>92A77D97-7181-4387-A23E-CC47090B37BD</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>版本更新代码</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>version_code</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>
