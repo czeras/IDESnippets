@@ -3,22 +3,24 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>pri_weakstrong</string>
+	<string>pri_data_null</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>@weakify(self);
-@strongify(self);</string>
+	<string>NSArray *list = response[@"data"];
+if ([list isKindOfClass:[NSArray class]]) {
+    
+}</string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>7A776F21-A4A8-404A-A418-C81068004A77</string>
+	<string>16FF6835-E71D-4AF2-8325-B9B10D745EED</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Objective-C</string>
 	<key>IDECodeSnippetSummary</key>
 	<string></string>
 	<key>IDECodeSnippetTitle</key>
-	<string>weakify_strongify</string>
+	<string>服务端数据处理</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>

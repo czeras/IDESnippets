@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>pri_masonry_horizontal</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>    NSMutableArray *labArray = [NSMutableArray new];
+    for (int i = 0; i&lt;4; i++) {
+        UILabel *label = [[UILabel alloc]init];
+        label.tag = kLabTag+i;
+        label.textAlignment = NSTextAlignmentCenter;
+        label.font = [UIFont systemFontOfSize:32];//[UIFont systemFontOfSize:32 weight:UIFontWeightMedium];
+        label.textColor = JKRGBColor(51, 51, 51, 1);
+        label.backgroundColor = JKRGBColor(246, 246, 246, 1);
+        label.layer.cornerRadius = 3.2;
+        label.clipsToBounds = YES;
+        [self addSubview:label];
+        [labArray addObject:label];
+    }
+    [labArray mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedSpacing:20 leadSpacing:10 tailSpacing:10];
+    [labArray mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(@0);
+        make.bottom.equalTo(@0);
+    }];</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>52C42166-8275-4225-8997-FDC4F82E1AFB</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>pri_masonry_horizontal</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

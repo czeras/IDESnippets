@@ -3,22 +3,29 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>pri_weakstrong</string>
+	<string>pri_label</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>@weakify(self);
-@strongify(self);</string>
+	<string>    UILabel *phoneLabel = [[UILabel alloc] init];
+    _phoneLabel.textColor = UIColorFromRGB(0x333333, 1);
+    _phoneLabel.font = [UIFont systemFontOfSize:20 weight:(UIFontWeightMedium)];
+    [self addSubview:_phoneLabel];
+    [_phoneLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_headImagView).offset(20);
+        make.left.equalTo(_headImagView.mas_right).offset(14);
+        make.right.equalTo(self.mas_right).offset(-10);
+    }];</string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>7A776F21-A4A8-404A-A418-C81068004A77</string>
+	<string>288757F7-E56B-4EE9-BA04-48EB0D0E40C3</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Objective-C</string>
 	<key>IDECodeSnippetSummary</key>
-	<string></string>
+	<string>label </string>
 	<key>IDECodeSnippetTitle</key>
-	<string>weakify_strongify</string>
+	<string>pri_label</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>

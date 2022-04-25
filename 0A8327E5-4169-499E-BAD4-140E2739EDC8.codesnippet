@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>pri_model_unzip</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>// 解压文件路径设置
+- (void)unzipImageMapDocumentWithDownloadModel:(WT3DImageModel *)model downLoadPath:(NSString *)downLoadPath block1:(DownLoadImageSuccess)model111{
+
+    // 解压文件的路径
+    NSString *destination = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:[[[@"Documents" stringByAppendingPathComponent:@"Image"] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@",model.id]] stringByDeletingPathExtension]];
+
+    WTLog(@"下载文件路径:%@",downLoadPath);
+    WTLog(@"解压文件路径:%@",destination);
+
+    BOOL success = [SSZipArchive unzipFileAtPath:downLoadPath
+                                   toDestination:destination
+                              preserveAttributes:YES
+                                       overwrite:YES
+                                  nestedZipLevel:0
+                                        password:nil
+                                           error:nil
+                                        delegate:nil
+                                 progressHandler:nil
+                               completionHandler:nil];
+    if (success) {
+        NSLog(@"Success unzip");
+
+        NSError *error;
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+
+        // 获取到文件所在的路径
+        NSArray *items = [fileManager subpathsAtPath:destination];
+
+        // 这里只会获取 destination 后面的路径
+        NSString *targetStr = [items lastObject];
+
+        NSString *unzipStr = [NSString stringWithFormat:@"%@/%@",destination,targetStr];
+
+
+        // 解压成功，将数据保存到数据库
+        WT3DImageModel *dataModel = [[WT3DImageModel alloc] init];
+
+        dataModel.id = model.id;
+        dataModel.productName = model.productName;
+        dataModel.originPrice = model.originPrice;
+        dataModel.file = model.file;
+        dataModel.file = model.file;
+        dataModel.imageUrl = model.imageUrl;
+        dataModel.type = model.type;
+        dataModel.shootTime = model.shootTime;
+
+        dataModel.unFilePath = unzipStr;
+        dataModel.complete = 1;
+
+        BOOL isUpdate = [dataModel save];
+        if (isUpdate) {
+            WTLog(@"数据保存成功");
+        }
+
+        model111(dataModel);
+
+    } else {
+        NSLog(@"No success unzip");
+        return;
+    }
+    NSError *error = nil;
+    NSMutableArray&lt;NSString *&gt; *items = [[[NSFileManager defaultManager]
+                                          contentsOfDirectoryAtPath:downLoadPath
+                                          error:&amp;error] mutableCopy];
+    if (error) {
+        return;
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>0A8327E5-4169-499E-BAD4-140E2739EDC8</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>模型下载解压</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
