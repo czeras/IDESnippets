@@ -9,8 +9,19 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>NSAssert(self.model.projectId != nil,@"projectId 不能为空！");
-NSAssert(self.model.projectOrderId != nil,@"projectOrderId 不能为空！");</string>
+	<string>/*
+condition 书面意思为：状态、状况
+在这里代表的是一个条件判断，值为YES 或者 NO;
+desc 为异常描述，通常为NSString 。当condition为YES时程序继续运行，为NO 的时候，则抛出异常信息。NSAssert 可以出现在程序的任何一个位置。
+
+注：在condition为NO时，在debug 模式下运行会终止程序，并抛出异常，但是在release模式下运行，不终止程序不抛出异常。
+*/
+
+NSAssert(self.model.projectId != nil,@"projectId 不能为空！");
+NSAssert(self.model.projectOrderId != nil,@"projectOrderId 不能为空！");
+
+
+</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>2F5B7E3A-C82B-4C7C-8487-0CD32629813A</string>
 	<key>IDECodeSnippetLanguage</key>

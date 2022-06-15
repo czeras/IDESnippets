@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>pri_ImageTitleButton</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>NSMutableArray *btnArrays = [NSMutableArray array];
+    for (int i = 0; i&lt;tmpArray.count; i++) {
+        NSDictionary *tmpDict = tmpArray[i];
+        
+        ImageTitleButton *imageTitBtn = [[ImageTitleButton alloc] initWithStyle:EImageTopTitleBottomCenter];
+        imageTitBtn.tag = 10010+i;
+//        imageTitBtn.backgroundColor = [UIColor redColor];
+        [imageTitBtn setImage:[UIImage imageNamed:tmpDict[@"icon"]] forState:UIControlStateNormal];
+        [imageTitBtn setImage:[UIImage imageNamed:tmpDict[@"icon1"]] forState:UIControlStateSelected];
+        [imageTitBtn setTitle:tmpDict[@"title"] forState:UIControlStateNormal];
+        [imageTitBtn setTitle:tmpDict[@"title"] forState:UIControlStateSelected];
+        
+        [imageTitBtn setTitleColor:UIColorFromRGB(0x666666, 1) forState:(UIControlStateNormal)];
+        [imageTitBtn setTitleColor:UIColorFromRGB(0x666666, 1) forState:(UIControlStateSelected)];
+        imageTitBtn.titleLabel.font = [UIFont systemFontOfSize:14 weight:(UIFontWeightMedium)];
+        
+        [imageTitBtn addTarget:self action:@selector(sexBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+        imageTitBtn.backgroundColor = UIColorFromRGB(0xF0F0F0, 1);
+        
+        [self.btnBgView addSubview:imageTitBtn];
+        [btnArrays addObject:imageTitBtn];
+        
+        imageTitBtn.layer.cornerRadius = 10.0f;
+        imageTitBtn.clipsToBounds = YES;
+        
+        UIImageView *imageV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"sex_selected_icon"]];
+        imageV.tag = 10050+i;
+        imageV.hidden = YES;
+        [imageTitBtn addSubview:imageV];
+        [imageV mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(imageTitBtn.mas_right).offset(adaptScaleWidth(-7));
+            make.bottom.equalTo(imageTitBtn.mas_bottom).offset(adaptScaleWidth(-5));
+            make.size.mas_equalTo(CGSizeMake(adaptScaleWidth(14), adaptScaleWidth(14)));
+        }];
+    }
+
+    [btnArrays mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedSpacing:adaptScaleWidth(11) leadSpacing:adaptScaleWidth(19) tailSpacing:adaptScaleWidth(19)];
+    [btnArrays mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(@0);
+        make.bottom.equalTo</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>0CEA0F4C-F40D-4F09-A1A0-02F35C19D3E5</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>pri_ImageTitleButton</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

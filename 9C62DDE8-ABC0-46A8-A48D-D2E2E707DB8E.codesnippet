@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>pri_textfield_position</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>NSString *tmpNikStr = textField.text;
+    //获取高亮部分
+    UITextRange *selectedRange = [textField markedTextRange];
+    
+    UITextPosition*position = [textField positionFromPosition:selectedRange.start offset:0];
+    
+    if(!position || !selectedRange){
+        if(tmpNikStr.length&gt; kNiceNameMaxLength) {
+            NSRange rangeIndex = [tmpNikStr rangeOfComposedCharacterSequenceAtIndex:kNiceNameMaxLength];
+            if(rangeIndex.length&gt;=1) {
+                self.nickTextField.text= [tmpNikStr substringToIndex:kNiceNameMaxLength];
+            }
+            else {
+                NSRange rangeRange = [tmpNikStr rangeOfComposedCharacterSequencesForRange:NSMakeRange(0, kNiceNameMaxLength)];
+                self.nickTextField.text= [tmpNikStr substringWithRange:rangeRange];
+            }
+        }
+        else {
+            self.nickTextField.text = textField.text;
+            
+        }
+        self.nickNumLab.text = [NSString stringWithFormat:@"%lu/10",(unsigned long)self.nickTextField.text.length];
+        [self.locDict setObject:self.nickTextField.text forKey:@"nickname"];
+    }</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>9C62DDE8-ABC0-46A8-A48D-D2E2E707DB8E</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>textfield、textview 高亮</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>pri_textfield_position</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
