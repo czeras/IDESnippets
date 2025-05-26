@@ -1,13 +1,13 @@
 # IDESnippets
 
 #### 介绍
-Xcode 代码块 dddd
+开发中常用的代码块
 
 #### 软件架构
 软件架构说明
 
+## xcode 安装教程
 
-## 安装教程
 ##### 一、XCode代码块所在位置
 
 ```
@@ -38,6 +38,22 @@ echo "done"
 ```
 git clone https://gitee.com/czeras/CodeSnippets.git
 ```
+
+
+
+
+
+## vscode 安装教程
+
+##### 一、vscode 代码块所在位置
+
+```
+/Users/czera/Library/Application Support/Code/User/snippets/dart.json
+```
+
+
+
+
 
 
 
